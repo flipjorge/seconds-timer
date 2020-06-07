@@ -9,7 +9,4 @@ final class SecondsTimerTests: XCTestCase {
         XCTAssertEqual(SecondsTimer().text, "Hello, World!")
     }
 
-    static var allTests = [
-        ("testExample", testExample),
-    ]
 }
