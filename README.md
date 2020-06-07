@@ -1,2 +1,3 @@
 # seconds-timer
-Seconds Timer
+
+![Swift](https://github.com/flipjorge/seconds-timer/workflows/Swift/badge.svg)
