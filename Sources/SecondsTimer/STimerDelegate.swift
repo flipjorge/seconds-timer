@@ -28,3 +28,12 @@ public protocol STimerDelegate {
     func clock(_ clock:STimer, didResumeWithSeconds seconds:Int)
     func clockDidEnd(_ clock:STimer)
 }
+
+extension STimerDelegate {
+    func clock(_ clock:STimer, didStartWithSeconds seconds:Int) { }
+    func clock(_ clock:STimer, didTickWithSeconds seconds:Int) { }
+    func clock(_ clock:STimer, didStopAtSeconds seconds:Int) { }
+    func clock(_ clock:STimer, didPauseAtSeconds seconds:Int) { }
+    func clock(_ clock:STimer, didResumeWithSeconds seconds:Int) { }
+    func clockDidEnd(_ clock:STimer) { }
+}
