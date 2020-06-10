@@ -29,7 +29,7 @@ public protocol STimerDelegate {
     func clockDidEnd(_ clock:STimer)
 }
 
-extension STimerDelegate {
+public extension STimerDelegate {
     func clock(_ clock:STimer, didStartWithSeconds seconds:Int) { }
     func clock(_ clock:STimer, didTickWithSeconds seconds:Int) { }
     func clock(_ clock:STimer, didStopAtSeconds seconds:Int) { }
