@@ -49,7 +49,10 @@ public class STimer {
     
     // MARK: - Start
     public func start(_ seconds: Int) {
-        guard seconds > 0 else { return }
+        guard seconds > 0 else {
+            _endTimer()
+            return
+        }
         
         _secondsRemaining = seconds
         _startingSeconds = _secondsRemaining
@@ -68,11 +71,7 @@ public class STimer {
             
             if(self._secondsRemaining <= 0)
             {
-                timer.invalidate()
-                if self._timer == timer {
-                    self._timer = nil
-                }
-                self.delegate?.clockDidEnd(self)
+                self._endTimer()
             }
         }
         
@@ -108,5 +107,17 @@ public class STimer {
         _startTimer()
         
         self.delegate?.clock(self, didResumeWithSeconds: _secondsRemaining)
+    }
+    
+    // MARK: - End
+    private func _endTimer() {
+        if let timer = _timer {
+            timer.invalidate()
+            _timer = nil
+        }
+        
+        _secondsRemaining = 0
+        
+        self.delegate?.clockDidEnd(self)
     }
 }

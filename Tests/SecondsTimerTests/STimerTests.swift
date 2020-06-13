@@ -37,11 +37,11 @@ final class STimerTests: XCTestCase {
         XCTAssertFalse(clock.isActive)
     }
     
-    func test_start_givenNegativeSeconds_staysInactive() {
+    func test_start_givenNegativeSeconds_staysInactiveAndSetZeroSecRemaining() {
         clock.start(-1)
         
         XCTAssertFalse(clock.isActive)
-        XCTAssertNotEqual(clock.secondsRemaining, -1)
+        XCTAssertEqual(clock.secondsRemaining, 0)
     }
     
     func test_start_secondsDecrease() {
@@ -78,6 +78,24 @@ final class STimerTests: XCTestCase {
         } else {
             XCTFail("Clock should be inactive")
         }
+    }
+    
+    func test_startMultipleTimes_shouldUpdateToNewerTimeRemaining() {
+        clock.start(3)
+        XCTAssertEqual(clock.secondsRemaining, 3)
+        
+        clock.start(6)
+        XCTAssertEqual(clock.secondsRemaining, 6)
+    }
+    
+    func test_startGivenPositiveSeconds_startAgainWithNegativeSeconds_setInactiveWithZeroSec() {
+        clock.start(3)
+        XCTAssertTrue(clock.isActive)
+        XCTAssertEqual(clock.secondsRemaining, 3)
+        
+        clock.start(-4)
+        XCTAssertFalse(clock.isActive)
+        XCTAssertEqual(clock.secondsRemaining, 0)
     }
     
     // MARK: - Notifications
