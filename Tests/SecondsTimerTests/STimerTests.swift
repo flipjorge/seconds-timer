@@ -128,6 +128,30 @@ final class STimerTests: XCTestCase {
         wait(for: [exp], timeout: 3)
     }
     
+    func test_startMultipleTimes_invalidatePreviousTimers() {
+        let exp = expectation(description: "Check number ticks")
+        var numberTicks = 0
+        
+        let clockDelegate = ClockDelegateMock()
+        clockDelegate.clockDidTickWithSeconds = { clock, seconds in
+            numberTicks += 1
+        }
+        
+        clock.delegate = clockDelegate
+        clock.start(2)
+        clock.start(2)
+        clock.start(2)
+        clock.start(2)
+        clock.start(2)
+        
+        let result = XCTWaiter.wait(for: [exp], timeout: 3)
+        if(result == XCTWaiter.Result.timedOut) {
+            XCTAssertLessThanOrEqual(numberTicks, 2)
+        } else {
+            XCTFail("Clock should be inactive")
+        }
+    }
+    
     func test_start_notifiesDidEnd() {
         let exp = expectation(description: "Notifies DidEnd")
         

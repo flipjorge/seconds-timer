@@ -63,6 +63,7 @@ public class STimer {
     }
     
     private func _startTimer() {
+        _timer?.invalidate()
         _timer = Timer.init(timeInterval: 1, repeats: true) { [weak self] timer in
             guard let self = self else { return }
             //
