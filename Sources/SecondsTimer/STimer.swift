@@ -31,15 +31,15 @@ public class STimer {
     public var delegate: STimerDelegate?
     
     // MARK: - Properties
-    private var _secondsRemaining: Int = 0
-    private var _startingSeconds: Int = 0
+    private var _secondsRemaining: Double = 0
+    private var _startingSeconds: Double = 0
     private var _timer: Timer?
     
-    public var secondsRemaining: Int {
+    public var secondsRemaining: Double {
         return _secondsRemaining
     }
     
-    public var startingSeconds: Int {
+    public var startingSeconds: Double {
         return _startingSeconds
     }
     
@@ -48,7 +48,7 @@ public class STimer {
     }
     
     // MARK: - Start
-    public func start(_ seconds: Int) {
+    public func start(_ seconds: Double) {
         guard seconds > 0 else {
             _endTimer()
             return

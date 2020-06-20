@@ -315,30 +315,30 @@ final class STimerTests: XCTestCase {
     // MARK: - Clock Delegate Mock
     class ClockDelegateMock: STimerDelegate {
         
-        var clockDidStartWithSeconds: ( (STimer, Int) -> Void )?
-        var clockDidTickWithSeconds: ( (STimer, Int) -> Void )?
-        var clockDidStopAtSeconds: ( (STimer, Int) -> Void )?
-        var clockDidPauseAtSeconds: ( (STimer, Int) -> Void )?
-        var clockDidResumeWithSeconds: ( (STimer, Int) -> Void )?
+        var clockDidStartWithSeconds: ( (STimer, Double) -> Void )?
+        var clockDidTickWithSeconds: ( (STimer, Double) -> Void )?
+        var clockDidStopAtSeconds: ( (STimer, Double) -> Void )?
+        var clockDidPauseAtSeconds: ( (STimer, Double) -> Void )?
+        var clockDidResumeWithSeconds: ( (STimer, Double) -> Void )?
         var clockDidEnd: ( (STimer) -> Void )?
         
-        func clock(_ clock: STimer, didStartWithSeconds seconds: Int) {
+        func clock(_ clock: STimer, didStartWithSeconds seconds: Double) {
             clockDidStartWithSeconds?(clock, seconds)
         }
         
-        func clock(_ clock: STimer, didTickWithSeconds seconds: Int) {
+        func clock(_ clock: STimer, didTickWithSeconds seconds: Double) {
             clockDidTickWithSeconds?(clock, seconds)
         }
         
-        func clock(_ clock: STimer, didStopAtSeconds seconds: Int) {
+        func clock(_ clock: STimer, didStopAtSeconds seconds: Double) {
             clockDidStopAtSeconds?(clock, seconds)
         }
         
-        func clock(_ clock: STimer, didPauseAtSeconds seconds: Int) {
+        func clock(_ clock: STimer, didPauseAtSeconds seconds: Double) {
             clockDidPauseAtSeconds?(clock, seconds)
         }
         
-        func clock(_ clock:STimer, didResumeWithSeconds seconds: Int) {
+        func clock(_ clock:STimer, didResumeWithSeconds seconds: Double) {
             clockDidResumeWithSeconds?(clock, seconds)
         }
         
