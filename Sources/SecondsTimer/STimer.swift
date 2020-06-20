@@ -49,6 +49,9 @@ public class STimer {
     
     // MARK: - Start
     public func start(_ seconds: Double) {
+        
+        let seconds = seconds.rounded()
+        
         guard seconds > 0 else {
             _endTimer()
             return

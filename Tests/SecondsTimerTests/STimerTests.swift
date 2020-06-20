@@ -31,6 +31,14 @@ final class STimerTests: XCTestCase {
         XCTAssertEqual(clock?.secondsRemaining, 3)
     }
     
+    func test_start_givenNotIntegerSeconds_initializesWithRoundedInteger() {
+        clock.start(4.4)
+        XCTAssertEqual(clock.secondsRemaining, 4)
+        
+        clock.start(4.6)
+        XCTAssertEqual(clock.secondsRemaining, 5)
+    }
+    
     func test_start_givenZeroSeconds_staysInactive() {
         clock.start(0)
         
